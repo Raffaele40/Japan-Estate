@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "houses")
-public class house {
+public class House {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -65,7 +65,7 @@ public class house {
 
     @Override
     public String toString() {
-        return "house{" +
+        return "House{" +
                 "id=" + id +
                 ", address='" + address + '\'' +
                 ", price=" + price +
