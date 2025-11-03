@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>Japan Estate - Home</title>
 </head>
 <body>
+<div th:each="house : ${houses}">
+    <img th:src="@{'/images/' + ${house.img}}" />
+    <p th:text="${house.city}"></p>
+    <p th:text="${house.price} + '¥'"></p>
+</div>
 
 </body>
 </html>

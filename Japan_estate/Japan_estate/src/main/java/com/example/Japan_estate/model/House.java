@@ -10,9 +10,11 @@ public class House {
     private int id;
 
     private String address;
+    private String city;
     private double price;
     private int size;
     private int rooms;
+    private String img;
     private boolean available;
 
     public int getId() {
@@ -29,6 +31,14 @@ public class House {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public double getPrice() {
@@ -55,6 +65,14 @@ public class House {
         this.rooms = rooms;
     }
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
     public boolean isAvailable() {
         return available;
     }
@@ -68,6 +86,7 @@ public class House {
         return "House{" +
                 "id=" + id +
                 ", address='" + address + '\'' +
+                ", city= " + city +
                 ", price=" + price +
                 ", size=" + size +
                 ", rooms=" + rooms +
