@@ -2,15 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Yuji+Syuku&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/standard.css">
     <link rel="stylesheet" href="/css/layout.css">
-    <link rel="stylesheet" href="/css/home.css">
-    <title>Japan Estate</title>
+    <link rel="stylesheet" href="/css/houseDetails.css">
+    <title>Japan Estate - House details</title>
     <link rel="icon" type="image/png" sizes="32x32" href="/images/layout/favicon.png">
 </head>
 <body>
@@ -38,42 +38,12 @@
     </div>
 </div>
 
-<div class="filters_catalog_adjustment">
-    <!-- filters bar -->
-    <div class="flex_container_filters_bar">
-        <form id="filtersForm" action="/" method="get">
-            <div class="filters_bar_box">
-                <div class="filter_option">
-                    <input type="checkbox" id="kyoto" name="cityFilter" value="kyoto" th:checked="${cityFilter != null and cityFilter.contains('kyoto')}">
-                    <label for="kyoto">Kyoto</label>
-                </div>
-                <div class="filter_option">
-                    <input type="checkbox" id="osaka" name="cityFilter" value="osaka" th:checked="${cityFilter != null and cityFilter.contains('osaka')}">
-                    <label for="osaka">Osaka</label>
-                </div>
-                <div class="filter_option">
-                    <input type="checkbox" id="hiroshima" name="cityFilter" value="hiroshima" th:checked="${cityFilter != null and cityFilter.contains('hiroshima')}">
-                    <label for="hiroshima">Hiroshima</label>
-                </div>
-            </div>
-        </form>
-    </div>
-    <!-- Catalog -->
-    <div class="flex_catalog">
-        <div class="flex_item" th:each="house : ${houses}">
-            <a th:href="'/house_details/' + ${house.id}"> <img th:src="@{'/images/houses/' + ${house.img}}" class="catalog_img"/> </a>
-            <p th:text="${house.city}"></p>
-            <p th:text="${#numbers.formatDecimal(house.price, 0, 'COMMA', 3, 'POINT')} + '¥'"></p>
-        </div>
-    </div>
+<div class="flex_infobox">
+    <img th:src="@{'/images/houses/' + ${houseDetails.img}}" class="house_img"/>
+    <p th:text="${houseDetails.city}"></p>
+    <p th:text="${#numbers.formatDecimal(houseDetails.price, 0, 'COMMA', 3, 'POINT')} + '¥'"></p>
+    <p th:text="${'rooms: ' + houseDetails.rooms}"></p>
+    <p th:text="${'size: ' + houseDetails.size + 'm^2'}"></p>
 </div>
-
-<script>
-    document.querySelectorAll('input[name="cityFilter"]').forEach(cb => {
-        cb.addEventListener('change', () => {
-            document.getElementById('filtersForm').submit();
-        });
-    });
-</script>
 </body>
 </html>
