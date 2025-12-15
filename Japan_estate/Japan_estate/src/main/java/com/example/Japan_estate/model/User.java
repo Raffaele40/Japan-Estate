@@ -2,7 +2,7 @@ package com.example.Japan_estate.model;
 
 import jakarta.persistence.*;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "users")
@@ -14,7 +14,17 @@ public class User {
     private String password;
     private String name;
     private String surname;
-    private Date bDay;
+    private LocalDate bDay;
+    private String gender;
+
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
     public String getEmail() {
         return email;
@@ -48,11 +58,11 @@ public class User {
         this.surname = surname;
     }
 
-    public Date getbDay() {
+    public LocalDate getbDay() {
         return bDay;
     }
 
-    public void setbDay(Date bDay) {
+    public void setbDay(LocalDate bDay) {
         this.bDay = bDay;
     }
 
@@ -63,7 +73,20 @@ public class User {
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
-                ", bDay=" + bDay +
+                ", bDay=" + bDay + '\'' +
+                ", gender= " + gender +
                 '}';
+    }
+
+    public User(){
+    }
+
+    public User(String email, String password, String name, String surname, LocalDate bDay, String gender) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+        this.bDay = bDay;
+        this.gender = gender;
     }
 }

@@ -5,6 +5,7 @@ body{
 *{
     font-family: 'Noto Sans Mono', sans-serif;
     text-decoration: none;
+    color: black;
     background-color: inherit;
     margin: 0;
     padding: 0;

@@ -1,14 +1,14 @@
 package com.example.Japan_estate.controller;
 
 import com.example.Japan_estate.model.House;
+import com.example.Japan_estate.model.User;
 import com.example.Japan_estate.service.HouseService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -17,15 +17,18 @@ public class HouseController {
     @Autowired private HouseService service;
 
     @GetMapping("/")
-    public String home(@RequestParam(name = "cityFilter", required = false) List<String> cityFilter, Model model){
+    public String home(@RequestParam(name = "cityFilter", required = false) List<String> cityFilter, HttpSession session, Model model){
+        User user = (User) session.getAttribute("loggedUser");
+        model.addAttribute("user", user);
+
         List<House> houses = service.getAll();
-        List<House> availableHouses = service.findByAvailable(true);
+        List<House> availableHouses = service.getAvailableHouses();
 
         if(cityFilter != null) {
             availableHouses.clear();
-            for (House houseF: service.findByCityIn(cityFilter)){
-                availableHouses.add(houseF);
-            }
+            availableHouses.addAll(service.findByCityIn(cityFilter).stream()
+                    .filter(house -> house.isAvailable())
+                    .toList());
         }
 
         model.addAttribute("houses", availableHouses);
