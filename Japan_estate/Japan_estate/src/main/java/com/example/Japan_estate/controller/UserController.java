@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
+
 @Controller
 public class UserController {
 
@@ -23,7 +25,13 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String register(@ModelAttribute User user, Model model){
+    public String register(@ModelAttribute User user, @RequestParam int bDay_day, @RequestParam int bDay_month, @RequestParam int bDay_year, Model model){
+        LocalDate birthDate = LocalDate.of(bDay_year, bDay_month, bDay_day);
+        user.setbDay(birthDate);
+        if (!service.checkParams(user)){
+            model.addAttribute("error", "Fill every field");
+            return "register";
+        }
         User saved = service.register(user);
         if (saved == null){
             model.addAttribute("error", "Email already registered");

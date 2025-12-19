@@ -30,6 +30,13 @@ public class UserService {
         return null;
     }
 
+    public boolean checkParams(User user){
+        if(user.getName() == null || user.getName().isBlank() || user.getSurname() == null || user.getSurname().isBlank() || user.getEmail() == null || user.getEmail().isBlank() || user.getPassword() == null || user.getPassword().isBlank() || user.getGender() == null || user.getGender().isBlank() || user.getbDay() == null){
+            return false;
+        }
+        return true;
+    }
+
     public List<User> getAll(){
         return repo.findAll();
     }

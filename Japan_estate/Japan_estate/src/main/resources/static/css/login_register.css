@@ -123,3 +123,7 @@ select.register_login_input{
     box-shadow: 2px 2px 1px #c0f2c0;
     transition: .1s all;
 }
+
+.error_message{
+    color: red;
+}
