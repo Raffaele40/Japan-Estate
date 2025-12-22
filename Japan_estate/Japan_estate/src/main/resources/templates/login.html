@@ -14,6 +14,22 @@
     <title>Japan Estate - Login</title>
 </head>
 <body>
-
+<div class="box_logo_name" style="margin-top: 12px;">
+    <a th:href="@{/}"> <img th:src="@{'/images/layout/logo_rettangolo.png'}" id="logo"/></a>
+    <a th:href="@{/}" id="page_name">JAPAN ESTATE</a>
+</div>
+<div id="login_register_flexbox">
+    <p id="above_form_text">Log into your account</p>
+    <form id="login_register_form" th:action="@{/login}" method="post">
+        <div class="input_div">
+            <input type="email" name="email" class="email_password_input" placeholder="E-Mail" id="email" required>
+        </div>
+        <div class="input_div">
+            <input type="password" name="password" class="email_password_input" placeholder="Password" id="password" required>
+        </div>
+        <button type="submit" id="submit_form_button">Login</button>
+    </form>
+    <div th:if="${error}" class="error_message" th:text="${error}"></div>
+</div>
 </body>
 </html>

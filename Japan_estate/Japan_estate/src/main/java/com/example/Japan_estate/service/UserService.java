@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -22,8 +21,7 @@ public class UserService {
     }
 
     public User login(String email, String password){
-        User user = repo.findByEmail(email)
-                .orElseThrow(NoSuchElementException::new);
+        User user = repo.findByEmail(email).orElse(null);
         if(user != null && user.getPassword().equals(password)){
             return user;
         }

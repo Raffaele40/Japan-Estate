@@ -91,6 +91,13 @@
     background-color: #e0f8e0;
 }
 
+.footer{
+    display: flex;
+    height: 65px;
+    margin-top: 20px;
+    background-color: #e0f8e0;
+}
+
 .ph--magnifying-glass {
   display: inline-block;
   width: 20px;

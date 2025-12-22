@@ -34,26 +34,21 @@
         </div>
     </nav>
     <div class="right_header">
-        <a th:href="@{/login}" id="login_button">Login</a>
+        <a th:if="${session.loggedUser == null}" th:href="@{/login}" id="login_button">Login</a>
+        <p th:if="${session.loggedUser != null}">Hello, <span th:text="${session.loggedUser.name}"></span></p>
     </div>
 </div>
 
 <div class="filters_catalog_adjustment">
     <!-- filters bar -->
     <div class="flex_container_filters_bar">
-        <form id="filtersForm" action="/" method="get">
+        <form id="filtersForm" action="/" th:object="${filters}" method="get">
             <div class="filters_bar_box">
-                <div class="filter_option">
-                    <input type="checkbox" id="kyoto" name="cityFilter" value="kyoto" th:checked="${cityFilter != null and cityFilter.contains('kyoto')}">
-                    <label for="kyoto">Kyoto</label>
-                </div>
-                <div class="filter_option">
-                    <input type="checkbox" id="osaka" name="cityFilter" value="osaka" th:checked="${cityFilter != null and cityFilter.contains('osaka')}">
-                    <label for="osaka">Osaka</label>
-                </div>
-                <div class="filter_option">
-                    <input type="checkbox" id="hiroshima" name="cityFilter" value="hiroshima" th:checked="${cityFilter != null and cityFilter.contains('hiroshima')}">
-                    <label for="hiroshima">Hiroshima</label>
+                <div th:each="city : ${allCities}" class="filter_option">
+                    <input type="checkbox"
+                           th:value="${city}"
+                           th:field="*{cities}">
+                    <label th:text="${city}"></label>
                 </div>
             </div>
         </form>
@@ -67,9 +62,9 @@
         </div>
     </div>
 </div>
-
+<div class="footer"></div>
 <script>
-    document.querySelectorAll('input[name="cityFilter"]').forEach(cb => {
+    document.querySelectorAll('#filtersForm input[type="checkbox"]').forEach(cb => {
         cb.addEventListener('change', () => {
             document.getElementById('filtersForm').submit();
         });

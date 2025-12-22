@@ -28,6 +28,8 @@
     border-color: #d6f5d6;
     transition: .2s all;
     box-shadow: 4px 4px 2px #d6f5d6;
+    max-height: 300px;
+    max-width: 320px;
 }
 
 .flex_item:hover{

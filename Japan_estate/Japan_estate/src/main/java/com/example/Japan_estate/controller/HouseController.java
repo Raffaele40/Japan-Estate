@@ -1,7 +1,10 @@
 package com.example.Japan_estate.controller;
 
+import com.example.Japan_estate.model.CatalogFilters;
+import com.example.Japan_estate.model.CityEntry;
 import com.example.Japan_estate.model.House;
 import com.example.Japan_estate.model.User;
+import com.example.Japan_estate.service.CityLoader;
 import com.example.Japan_estate.service.HouseService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,30 +18,41 @@ import java.util.List;
 public class HouseController {
 
     @Autowired private HouseService service;
+    @Autowired private CityLoader cityLoader;
 
     @GetMapping("/")
-    public String home(@RequestParam(name = "cityFilter", required = false) List<String> cityFilter, HttpSession session, Model model){
+    public String home(@ModelAttribute CatalogFilters filters, HttpSession session, Model model){
         User user = (User) session.getAttribute("loggedUser");
         model.addAttribute("user", user);
 
-        List<House> houses = service.getAll();
-        List<House> availableHouses = service.getAvailableHouses();
+        List<House> houses = service.getAllAvailable();
 
-        if(cityFilter != null) {
-            availableHouses.clear();
-            availableHouses.addAll(service.findByCityIn(cityFilter).stream()
-                    .filter(house -> house.isAvailable())
-                    .toList());
+        if(!filters.isEmpty()) {
+            houses.clear();
+            if (!filters.getCities().isEmpty()){
+                houses.addAll(service.findByCityIn(filters.getCities()).stream()
+                        .filter(house -> house.isAvailable())
+                        .toList());
+            }
         }
 
-        model.addAttribute("houses", availableHouses);
-        model.addAttribute("cityFilter", cityFilter);
+        model.addAttribute("houses", houses);
+
+        List<String> allCities = cityLoader.getCityList().stream()
+                        .map(CityEntry::getCity)
+                        .sorted()
+                        .toList();
+        model.addAttribute("allCities", allCities);
+        model.addAttribute("filters", filters);
 
         return "index";
     }
 
     @GetMapping("/house_details/{id}")
-    public String houseDetails(@PathVariable Integer id, Model model){
+    public String houseDetails(@PathVariable Integer id, HttpSession session, Model model){
+        User user = (User) session.getAttribute("loggedUser");
+        model.addAttribute("user", user);
+        
         House house = service.findById(id)
                         .orElseThrow(() -> new RuntimeException("House not found"));
         model.addAttribute("houseDetails", house);

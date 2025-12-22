@@ -17,12 +17,12 @@ public class HouseService {
         return repo.findAll();
     }
 
-    public List<House> getAvailableHouses(){
+    public List<House> getAllAvailable(){
         return repo.getAvailableHouses();
     }
 
     public List<House> getPriceLessThan(double price){
-        return repo.findByPriceLessThan(price);
+        return repo.findByPriceLessThanEqual(price);
     }
 
     public Optional<House> findById(Integer id){

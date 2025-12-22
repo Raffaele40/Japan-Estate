@@ -28,7 +28,7 @@ public class UserController {
     public String register(@ModelAttribute User user, @RequestParam int bDay_day, @RequestParam int bDay_month, @RequestParam int bDay_year, Model model){
         LocalDate birthDate = LocalDate.of(bDay_year, bDay_month, bDay_day);
         user.setbDay(birthDate);
-        if (!service.checkParams(user)){
+        if (!service.checkParams(user)) {
             model.addAttribute("error", "Fill every field");
             return "register";
         }
@@ -37,7 +37,6 @@ public class UserController {
             model.addAttribute("error", "Email already registered");
             return "register";
         }
-
         return "redirect:/login";
     }
 

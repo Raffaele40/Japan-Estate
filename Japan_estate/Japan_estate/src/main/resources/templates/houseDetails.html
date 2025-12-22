@@ -34,7 +34,8 @@
         </div>
     </nav>
     <div class="right_header">
-
+        <a th:if="${session.loggedUser == null}" th:href="@{/login}" id="login_button">Login</a>
+        <p th:if="${session.loggedUser != null}">Hello, <span th:text="${session.loggedUser.name}"></span></p>
     </div>
 </div>
 
