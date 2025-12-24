@@ -1,13 +1,13 @@
 .catalog_img{
     border-radius: 10px;
-    width: 270px;
-    height: 230px;
+    width: 235px;
+    height: 195px;
 }
 
 .filters_catalog_adjustment{
     display: flex;
     flex-direction: row;
-    flex: 1;
+    justify-content: flex-start;
 }
 
 .flex_catalog{
@@ -15,7 +15,9 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: flex-start;
-    gap: 10px 20px;
+    align-content: flex-start;
+    margin-left: 20px;
+    gap: 10px;
 }
 
 .flex_item{
@@ -52,18 +54,35 @@
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: center;
+    text-align: center;
     gap: 10px;
-    padding: 25px;
+    padding: 15px;
     margin-top: 20px;
-    margin-left: 12px;
+    margin-left: 50px;
     background-color: #e0f8e0;
     box-shadow: 4px 4px 2px #c0f2c0;
     border-radius: 8px;
+    max-width: 155px;
 }
 
 .filter_option{
     display: flex;
+    font-size: 13px;
     align-items: center;
     gap: 5px;
 }
 
+.number_input{
+    border-width: 0px;
+    border-radius: 2px;
+    padding: 2px;
+    max-width: 150px;
+    background-color: white;
+}
+
+.mini_label_input_wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1px;
+}

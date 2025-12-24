@@ -1,5 +1,14 @@
 body{
     background-color: #eafaea;
+    min-height: 100vh;
+}
+
+hr{
+    width: 85%;
+    background-color: #c0f2c0;
+    border-width: 0px;
+    height: 2px;
+    align-self: center;
 }
 
 *{
@@ -13,4 +22,9 @@ body{
 
 a{
     line-height: 0;
+}
+
+.mini_label{
+    font-size: 11px;
+    align-self: flex-start;
 }

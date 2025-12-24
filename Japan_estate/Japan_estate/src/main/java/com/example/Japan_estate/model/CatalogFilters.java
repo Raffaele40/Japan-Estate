@@ -5,8 +5,8 @@ import java.util.List;
 
 public class CatalogFilters {
     private List<String> cities;
-    private double minPrice;
-    private double maxPrice;
+    private Double minPrice;
+    private Double maxPrice;
     private Integer minRooms;
     private Integer maxRooms;
     private Integer minSize;
@@ -21,20 +21,30 @@ public class CatalogFilters {
         this.cities = cities;
     }
 
-    public double getMinPrice() {
+    public Double getMinPrice() {
         return minPrice;
     }
 
-    public void setMinPrice(double minPrice) {
-        this.minPrice = minPrice;
+    public void setMinPrice(Double minPrice) {
+        if(minPrice == null){
+            this.minPrice = 0.0;
+        }
+        else {
+            this.minPrice = minPrice;
+        }
     }
 
-    public double getMaxPrice() {
+    public Double getMaxPrice() {
         return maxPrice;
     }
 
-    public void setMaxPrice(double maxPrice) {
-        this.maxPrice = maxPrice;
+    public void setMaxPrice(Double maxPrice) {
+        if (maxPrice == null){
+            this.maxPrice = 0.0;
+        }
+        else {
+            this.maxPrice = maxPrice;
+        }
     }
 
     public Integer getMinRooms() {
@@ -78,10 +88,10 @@ public class CatalogFilters {
     }
 
     public boolean isEmpty(){
-        return (cities.isEmpty() || cities == null) && minPrice <= 0 && maxPrice >= Double.MAX_VALUE && minRooms <= 0 && maxRooms >= Integer.MAX_VALUE && available;
+        return (cities == null || cities.isEmpty()) && (minPrice == null || minPrice == 0) && (maxPrice == null || maxPrice == 0) && minRooms <= 0 && maxRooms <= 0 && minSize <= 0 && maxSize <= 0 && available;
     }
 
-    public CatalogFilters(List<String> cities, double minPrice, double maxPrice, Integer minRooms, Integer maxRooms, Integer minSize, Integer maxSize, boolean available) {
+    public CatalogFilters(List<String> cities, Double minPrice, Double maxPrice, Integer minRooms, Integer maxRooms, Integer minSize, Integer maxSize, boolean available) {
         this.cities = cities;
         this.minPrice = minPrice;
         this.maxPrice = maxPrice;
@@ -94,12 +104,12 @@ public class CatalogFilters {
 
     public CatalogFilters() {
         this.cities = new ArrayList<>();
-        this.minPrice = 0;
-        this.maxPrice = Double.MAX_VALUE;
+        this.minPrice = null;
+        this.maxPrice = null;
         this.minRooms = 0;
-        this.maxRooms = Integer.MAX_VALUE;
+        this.maxRooms = 0;
         this.minSize = 0;
-        this.maxSize = Integer.MAX_VALUE;
+        this.maxSize = 0;
         this.available = true;
     }
 

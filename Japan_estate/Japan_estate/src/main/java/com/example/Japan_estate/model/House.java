@@ -11,7 +11,7 @@ public class House {
 
     private String address;
     private String city;
-    private double price;
+    private Double price;
     private int size;
     private int rooms;
     private String img;
@@ -41,11 +41,11 @@ public class House {
         this.city = city;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

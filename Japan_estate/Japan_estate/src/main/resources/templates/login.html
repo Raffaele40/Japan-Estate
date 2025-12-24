@@ -28,8 +28,13 @@
             <input type="password" name="password" class="email_password_input" placeholder="Password" id="password" required>
         </div>
         <button type="submit" id="submit_form_button">Login</button>
+        <div th:if="${error}" class="error_message" th:text="${error}"></div>
+        <hr>
+        <div class="switch_login_register_div">
+            <p>Are you new?</p>
+            <a th:href="@{/register}" id="switch_login_register_button">Create a new account</a>
+        </div>
     </form>
-    <div th:if="${error}" class="error_message" th:text="${error}"></div>
 </div>
 </body>
 </html>

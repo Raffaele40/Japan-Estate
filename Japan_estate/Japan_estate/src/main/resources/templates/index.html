@@ -44,11 +44,26 @@
     <div class="flex_container_filters_bar">
         <form id="filtersForm" action="/" th:object="${filters}" method="get">
             <div class="filters_bar_box">
+                <p style="font-weight: 500; font-size: 20px;">Filters</p>
+                <hr>
+                <p>Price</p>
+                <div class="mini_label_input_wrapper">
+                    <label for="minPrice" class="mini_label">Min</label>
+                    <input type="number" placeholder="Min" th:field="*{minPrice}" class="number_input" id="minPrice">
+                </div>
+                <div class="mini_label_input_wrapper">
+                    <label for="maxPrice" class="mini_label">Max</label>
+                    <input type="number" placeholder="Max" th:field="*{maxPrice}" class="number_input" id="maxPrice">
+                </div>
+                <hr>
+                <p>City</p>
                 <div th:each="city : ${allCities}" class="filter_option">
                     <input type="checkbox"
+                           name="cities"
+                           th:checked="${filters.cities != null and filters.cities.contains(city)}"
                            th:value="${city}"
-                           th:field="*{cities}">
-                    <label th:text="${city}"></label>
+                           th:id="${city}">
+                    <label th:text="${city}" th:for="${city}"></label>
                 </div>
             </div>
         </form>
@@ -65,6 +80,13 @@
 <div class="footer"></div>
 <script>
     document.querySelectorAll('#filtersForm input[type="checkbox"]').forEach(cb => {
+        cb.addEventListener('change', () => {
+            document.getElementById('filtersForm').submit();
+        });
+    });
+</script>
+<script>
+    document.querySelectorAll('#filtersForm input[type="number"]').forEach(cb => {
         cb.addEventListener('change', () => {
             document.getElementById('filtersForm').submit();
         });
