@@ -25,23 +25,7 @@ public class HouseController {
         User user = (User) session.getAttribute("loggedUser");
         model.addAttribute("user", user);
 
-        List<House> houses = service.getAllAvailable();
-
-        if(!filters.isEmpty()) {
-            houses.clear();
-            //set cities filter
-            if (!filters.getCities().isEmpty()){
-                houses.addAll(service.findByCityIn(filters.getCities()).stream()
-                        .filter(House::isAvailable)
-                        .toList());
-            }
-            //set prices filter
-            if (filters.getMaxPrice() != 0 || filters.getMinPrice() != 0){
-                houses.addAll(service.getPriceLessThan(filters.getMaxPrice()).stream()
-                        .filter(House::isAvailable)
-                        .toList());
-            }
-        }
+        List<House> houses = service.getFilteredHouses(filters);
 
         model.addAttribute("houses", houses);
 

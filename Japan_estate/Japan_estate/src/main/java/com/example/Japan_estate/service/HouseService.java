@@ -1,5 +1,6 @@
 package com.example.Japan_estate.service;
 
+import com.example.Japan_estate.model.CatalogFilters;
 import com.example.Japan_estate.model.House;
 import com.example.Japan_estate.repository.IRepoHouse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,7 +62,13 @@ public class HouseService {
         return repo.findByRoomsLessThan(rooms);
     }
 
-    List<House> findBySizeLessThan(int size){
+    public List<House> findBySizeLessThan(int size){
         return repo.findBySizeLessThan(size);
+    }
+
+    public List<House> getFilteredHouses(CatalogFilters filters){
+        return repo.findAll().stream()
+                .filter(filters::matches)
+                .toList();
     }
 }

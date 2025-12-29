@@ -26,12 +26,7 @@ public class CatalogFilters {
     }
 
     public void setMinPrice(Double minPrice) {
-        if(minPrice == null){
-            this.minPrice = 0.0;
-        }
-        else {
-            this.minPrice = minPrice;
-        }
+        this.minPrice = minPrice;
     }
 
     public Double getMaxPrice() {
@@ -39,12 +34,7 @@ public class CatalogFilters {
     }
 
     public void setMaxPrice(Double maxPrice) {
-        if (maxPrice == null){
-            this.maxPrice = 0.0;
-        }
-        else {
-            this.maxPrice = maxPrice;
-        }
+        this.maxPrice = maxPrice;
     }
 
     public Integer getMinRooms() {
@@ -88,7 +78,33 @@ public class CatalogFilters {
     }
 
     public boolean isEmpty(){
-        return (cities == null || cities.isEmpty()) && (minPrice == null || minPrice == 0) && (maxPrice == null || maxPrice == 0) && minRooms <= 0 && maxRooms <= 0 && minSize <= 0 && maxSize <= 0 && available;
+        return (cities == null || cities.isEmpty()) && (minPrice == null || minPrice == 0) && (maxPrice == null || maxPrice == 0) && (minRooms == null || minRooms <= 0) && (maxRooms == null || maxRooms <= 0) && (minSize == null || minSize <= 0) && (maxSize == null || maxSize <= 0) && available;
+    }
+
+    public boolean matches(House h){
+        if (available && !h.isAvailable()){ return false; }
+        if (cities != null && !cities.isEmpty() && !cities.contains(h.getCity())){ return false; }
+        if (minPrice != null && h.getPrice() < minPrice){ return false; }
+        if (maxPrice != null && h.getPrice() > maxPrice){ return false; }
+        if (minRooms != null && h.getRooms() < minRooms){ return false; }
+        if (maxRooms != null && h.getRooms() > maxRooms){ return false; }
+        if (minSize != null && h.getSize() < minSize){ return false; }
+        if (maxSize != null && h.getSize() > maxSize){ return false; }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "CatalogFilters{" +
+                "cities=" + cities +
+                ", minPrice=" + minPrice +
+                ", maxPrice=" + maxPrice +
+                ", minRooms=" + minRooms +
+                ", maxRooms=" + maxRooms +
+                ", minSize=" + minSize +
+                ", maxSize=" + maxSize +
+                ", available=" + available +
+                '}';
     }
 
     public CatalogFilters(List<String> cities, Double minPrice, Double maxPrice, Integer minRooms, Integer maxRooms, Integer minSize, Integer maxSize, boolean available) {
@@ -106,11 +122,10 @@ public class CatalogFilters {
         this.cities = new ArrayList<>();
         this.minPrice = null;
         this.maxPrice = null;
-        this.minRooms = 0;
-        this.maxRooms = 0;
-        this.minSize = 0;
-        this.maxSize = 0;
+        this.minRooms = null;
+        this.maxRooms = null;
+        this.minSize = null;
+        this.maxSize = null;
         this.available = true;
     }
-
 }

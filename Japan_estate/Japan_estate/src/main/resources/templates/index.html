@@ -56,6 +56,26 @@
                     <input type="number" placeholder="Max" th:field="*{maxPrice}" class="number_input" id="maxPrice">
                 </div>
                 <hr>
+                <p>Rooms</p>
+                <div class="mini_label_input_wrapper">
+                    <label for="minRooms" class="mini_label">Min</label>
+                    <input type="number" placeholder="Min" th:field="*{minRooms}" class="number_input" id="minRooms">
+                </div>
+                <div class="mini_label_input_wrapper">
+                    <label for="maxRooms" class="mini_label">Max</label>
+                    <input type="number" placeholder="Max" th:field="*{maxRooms}" class="number_input" id="maxRooms">
+                </div>
+                <hr>
+                <p>Size m²</p>
+                <div class="mini_label_input_wrapper">
+                    <label for="minSize" class="mini_label">Min</label>
+                    <input type="number" placeholder="Min" th:field="*{minSize}" class="number_input" id="minSize">
+                </div>
+                <div class="mini_label_input_wrapper">
+                    <label for="maxSize" class="mini_label">Max</label>
+                    <input type="number" placeholder="Min" th:field="*{maxSize}" class="number_input" id="maxSize">
+                </div>
+                <hr>
                 <p>City</p>
                 <div th:each="city : ${allCities}" class="filter_option">
                     <input type="checkbox"
@@ -73,7 +93,7 @@
         <div class="flex_item" th:each="house : ${houses}">
             <a th:href="'/house_details/' + ${house.id}"> <img th:src="@{'/images/houses/' + ${house.img}}" class="catalog_img"/> </a>
             <p th:text="${house.city}"></p>
-            <p th:text="${#numbers.formatDecimal(house.price, 0, 'COMMA', 3, 'POINT')} + '¥'"></p>
+            <p th:text="${#numbers.formatDecimal(house.price, 0, 'POINT', 2, 'COMMA')} + '¥'"></p>
         </div>
     </div>
 </div>
