@@ -1,0 +1,65 @@
+[33mcommit b5a5439c56b6a24efb2a4e5b6950e37896f66b74[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
+Author: Raffaele40 <Raffaele-40@live.com>
+Date:   Mon Dec 29 19:05:50 2025 +0100
+
+    filters section completed
+
+[33mcommit 1ec66a857950a3a32f5a6e62325c50d5a6ac0ad9[m
+Author: Raffaele40 <Raffaele-40@live.com>
+Date:   Wed Dec 24 19:24:41 2025 +0100
+
+    filters update
+
+[33mcommit 6e47e64ec5df7a7699f8eca2b037186eca95a768[m
+Author: Raffaele40 <Raffaele-40@live.com>
+Date:   Mon Dec 22 23:42:53 2025 +0100
+
+    login completed and filters setupped
+
+[33mcommit 41602d81459365b5667de806f39f31bc454c192e[m
+Author: Raffaele40 <Raffaele-40@live.com>
+Date:   Fri Dec 19 23:34:09 2025 +0100
+
+    register completed
+
+[33mcommit e6cb757f5dc75740fb78b22672f429dd5cdafff9[m
+Author: Raffaele40 <Raffaele-40@live.com>
+Date:   Thu Dec 18 20:13:59 2025 +0100
+
+    register page html done
+
+[33mcommit f892aca933e3b1c3f0487a6534781836c2df66aa[m
+Author: Raffaele40 <Raffaele-40@live.com>
+Date:   Mon Dec 15 22:01:08 2025 +0100
+
+    setup register form
+
+[33mcommit ac0dbee89e966c414fd99eb247dbe842fe940b2f[m
+Author: Raffaele40 <Raffaele-40@live.com>
+Date:   Fri Dec 12 16:34:55 2025 +0100
+
+    code improvement
+
+[33mcommit b49cf1707ad4dfedffe5cd5419a42780ca43676f[m
+Author: Raffaele40 <Raffaele-40@live.com>
+Date:   Mon Nov 3 22:39:52 2025 +0100
+
+    starting setup index page
+
+[33mcommit 8a3af32729fe23345d0db791a7d8e5931599b938[m
+Author: Raffaele40 <Raffaele-40@live.com>
+Date:   Fri Oct 17 22:14:52 2025 +0200
+
+    database connected
+
+[33mcommit a01b89657ce18f89c681ace1461b59e41b6f5323[m
+Author: Raffaele40 <Raffaele-40@live.com>
+Date:   Fri Oct 17 19:58:58 2025 +0200
+
+    User entity added
+
+[33mcommit daca3e0fdbcc9c0229f3742e9212907e99569355[m
+Author: Raffaele40 <Raffaele-40@live.com>
+Date:   Thu Oct 16 22:22:20 2025 +0200
+
+    entity house created
