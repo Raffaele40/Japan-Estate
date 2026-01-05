@@ -18,24 +18,12 @@ public class HouseService {
         return repo.findAll();
     }
 
-    public List<House> getAllAvailable(){
-        return repo.getAvailableHouses();
-    }
-
-    public List<House> getPriceLessThan(double price){
-        return repo.findByPriceLessThanEqual(price);
-    }
-
     public Optional<House> findById(Integer id){
         return repo.findById(id);
     }
 
     public boolean existsById(Integer id){
         return  repo.existsById(id);
-    }
-
-    public List<House> findByCityIn(List<String> city){
-        return repo.findByCityIn(city);
     }
 
     public House addNewHouse(House house){
@@ -56,14 +44,6 @@ public class HouseService {
 
     public void delete(House house){
         repo.delete(house);
-    }
-
-    public List<House> findByRoomsLessThan(int rooms){
-        return repo.findByRoomsLessThan(rooms);
-    }
-
-    public List<House> findBySizeLessThan(int size){
-        return repo.findBySizeLessThan(size);
     }
 
     public List<House> getFilteredHouses(CatalogFilters filters){
