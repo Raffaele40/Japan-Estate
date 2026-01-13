@@ -1,8 +1,10 @@
 package com.example.Japan_estate.service;
 
 import com.example.Japan_estate.model.User;
+import com.example.Japan_estate.model.UserBasket;
 import com.example.Japan_estate.repository.IRepoUser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,18 +13,24 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-    @Autowired private IRepoUser repo;
+    @Autowired private IRepoUser userRepo;
+    @Autowired private PasswordEncoder passwordEncoder;
 
     public User register(User user){
-        if (repo.findByEmail(user.getEmail()).isPresent()) {
+        if (userRepo.findByEmail(user.getEmail()).isPresent()) {
             return null;
         }
-        return repo.save(user);
+        String encodedPassword = passwordEncoder.encode(user.getPassword());
+        user.setPassword(encodedPassword);
+
+        UserBasket basket = new UserBasket(user);
+        user.setBasket(basket);
+        return userRepo.save(user);
     }
 
-    public User login(String email, String password){
-        User user = repo.findByEmail(email).orElse(null);
-        if(user != null && user.getPassword().equals(password)){
+    public User login(String email, String rawPassword){
+        User user = userRepo.findByEmail(email).orElse(null);
+        if(user != null && passwordEncoder.matches(rawPassword, user.getPassword())){
             return user;
         }
         return null;
@@ -36,38 +44,38 @@ public class UserService {
     }
 
     public List<User> getAll(){
-        return repo.findAll();
+        return userRepo.findAll();
     }
 
     public boolean existsByEmail(String email){
-        return repo.existsByEmail(email);
+        return userRepo.existsByEmail(email);
     }
 
     public boolean deleteByEmail(String email){
-        boolean exists = repo.existsByEmail(email);
+        boolean exists = userRepo.existsByEmail(email);
         if(exists){
-            repo.deleteByEmail(email);
+            userRepo.deleteByEmail(email);
         }
         return exists;
     }
 
     public void delete(User user){
-        repo.delete(user);
+        userRepo.delete(user);
     }
 
     public Long count(){
-        return repo.count();
+        return userRepo.count();
     }
 
     public Optional<User> findByEmail(String email){
-        return repo.findByEmail(email);
+        return userRepo.findByEmail(email);
     }
 
     public List<User> findByName(String name){
-        return repo.findByName(name);
+        return userRepo.findByName(name);
     }
 
     public List<User> findByNameAndSurname(String name, String surname){
-        return repo.findByNameAndSurname(name, surname);
+        return userRepo.findByNameAndSurname(name, surname);
     }
 }

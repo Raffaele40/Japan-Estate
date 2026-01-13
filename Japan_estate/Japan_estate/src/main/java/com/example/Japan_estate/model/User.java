@@ -17,6 +17,9 @@ public class User {
     private LocalDate bDay;
     private String gender;
 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private UserBasket basket;
+
 
     public String getGender() {
         return gender;
@@ -64,6 +67,14 @@ public class User {
 
     public void setbDay(LocalDate bDay) {
         this.bDay = bDay;
+    }
+
+    public UserBasket getBasket() {
+        return basket;
+    }
+
+    public void setBasket(UserBasket basket) {
+        this.basket = basket;
     }
 
     @Override

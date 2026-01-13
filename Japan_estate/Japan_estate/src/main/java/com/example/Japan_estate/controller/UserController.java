@@ -4,6 +4,8 @@ import com.example.Japan_estate.model.User;
 import com.example.Japan_estate.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.KeyStore;
 import java.time.LocalDate;
 
 @Controller
@@ -28,6 +31,7 @@ public class UserController {
     public String register(@ModelAttribute User user, @RequestParam int bDay_day, @RequestParam int bDay_month, @RequestParam int bDay_year, Model model){
         LocalDate birthDate = LocalDate.of(bDay_year, bDay_month, bDay_day);
         user.setbDay(birthDate);
+
         if (!service.checkParams(user)) {
             model.addAttribute("error", "Fill every field");
             return "register";
