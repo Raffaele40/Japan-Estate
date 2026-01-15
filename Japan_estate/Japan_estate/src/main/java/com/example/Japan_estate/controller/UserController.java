@@ -8,10 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.KeyStore;
 import java.time.LocalDate;
@@ -39,7 +36,7 @@ public class UserController {
         User saved = service.register(user);
         if (saved == null){
             model.addAttribute("error", "Email already registered");
-            return "register";
+            return "user/register";
         }
         return "redirect:/login";
     }
@@ -60,4 +57,11 @@ public class UserController {
         return "redirect:/";
     }
 
+    @GetMapping("/user/profile")
+    public String showProfile(HttpSession session){
+//        if(session.getAttribute("loggedUser") == null){
+//            return "/login";
+//        }
+        return "/user/profile";
+    }
 }

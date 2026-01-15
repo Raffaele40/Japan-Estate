@@ -56,39 +56,43 @@
     /*background-color: #e0f8e0;*/
 }
 
-#login_button{
-    padding: 15px;
-    font-weight: 500;
-    border-radius: 5px;
-    margin-right: 70px;
-    background-color: #e0f8e0;
-    box-shadow: 4px 4px 2px #c0f2c0;
-}
-
 .navbar_back{
     display: flex;
     justify-content: center;
     text-align: center;
     background-color: #e0f8e0;
-    padding: 10px;
     box-shadow: 4px 4px 2px #c0f2c0;
-    /*transition: .1s all;*/
 }
 
 .navbar_back:active,
-#login_button:active{
+.profile_button:active{
     transform: scale(0.96);
     box-shadow: 2px 2px 1px #c0f2c0;
     transition: .1s all;
 }
 
+.profile_button,
 .header_button{
     display: flex;
     align-items: center;
     gap: 5px;
-    color: black;
-    font-size: 20px;
+}
+
+.profile_button{
+    padding: 17px;
+    font-weight: 500;
+    border-radius: 10px;
+    margin-right: 70px;
+    font-size: 17px;
     background-color: #e0f8e0;
+    box-shadow: 4px 4px 2px #c0f2c0;
+}
+
+.header_button {
+  font-size: 20px;
+  background-color: #e0f8e0;
+  padding: 20px;
+  border-radius: 15px;
 }
 
 .footer{
@@ -98,12 +102,16 @@
     background-color: #e0f8e0;
 }
 
-.ph--magnifying-glass {
+.line-md--account {
   display: inline-block;
   width: 20px;
   height: 20px;
-  background-color: #e0f8e0;
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath fill='%23000' d='m229.66 218.34l-50.07-50.06a88.11 88.11 0 1 0-11.31 11.31l50.06 50.07a8 8 0 0 0 11.32-11.32M40 112a72 72 0 1 1 72 72a72.08 72.08 0 0 1-72-72'/%3E%3C/svg%3E");
+  --svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg fill='none' stroke='%23000' stroke-dasharray='28' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='M4 21v-1c0 -3.31 2.69 -6 6 -6h4c3.31 0 6 2.69 6 6v1' stroke-dashoffset='0'/%3E%3Cpath stroke-dashoffset='0' d='M12 11c-2.21 0 -4 -1.79 -4 -4c0 -2.21 1.79 -4 4 -4c2.21 0 4 1.79 4 4c0 2.21 -1.79 4 -4 4Z'/%3E%3C/g%3E%3C/svg%3E");
+  background-color: currentColor;
+  -webkit-mask-image: var(--svg);
+  mask-image: var(--svg);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
 }
