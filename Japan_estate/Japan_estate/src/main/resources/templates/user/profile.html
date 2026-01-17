@@ -14,22 +14,36 @@
     <title>Profile</title>
 </head>
 <body>
-<div class="box_logo_name" style="margin-top: 12px;">
-    <a th:href="@{/}"> <img th:src="@{'/images/layout/logo_rettangolo.png'}" id="logo"/></a>
-    <a th:href="@{/}" id="page_name">JAPAN ESTATE</a>
+<!-- Header -->
+<div class="flex_header">
+    <div class="left_header">
+        <div class="box_logo_name">
+            <a th:href="@{/}"> <img th:src="@{'/images/layout/logo_rettangolo.png'}" id="logo"/></a>
+            <a th:href="@{/}" id="page_name">JAPAN ESTATE</a>
+        </div>
+    </div>
+    <nav class="center_header">
+    </nav>
+    <div class="right_header">
+        <a class="logout_button"><span class="line-md--logout"></span>Logout</a>
+    </div>
 </div>
-<div class="profile_layout">
-    <div class="profile_settings">
-        <span>settings</span>
-        <span>setting1</span>
-        <span>setting2</span>
-        <span>setting3</span>
+<div class="profile_page_layout">
+    <div class="your_account_section">
+        <p class="section_title">Your account</p>
+        <hr>
+        <a class="section_option">
+            <span class="icon-park-outline--shopping"></span>
+            <p>Basket</p>
+        </a>
+        <a class="section_option">
+            <span class="mdi--account-edit-outline"></span>
+            <p>Edit profile</p>
+        </a>
     </div>
     <div class="profile_info">
-        <span>info</span>
-        <span>info1</span>
-        <span>info2</span>
-        <span>info3</span>
+        <p class="section_title">Edit profile</p>
+        <hr>
     </div>
 </div>
 </body>
