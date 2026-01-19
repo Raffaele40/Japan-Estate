@@ -2,9 +2,62 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Yuji+Syuku&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/standard.css">
+    <link rel="stylesheet" href="/css/layout.css">
+    <link rel="stylesheet" href="/css/profile.css">
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/layout/favicon.png">
     <title>Profile - Basket</title>
 </head>
 <body>
+<!-- Header -->
+<div class="flex_header">
+    <div class="left_header">
+        <div class="box_logo_name">
+            <a th:href="@{/}"> <img th:src="@{'/images/layout/logo_rettangolo.png'}" id="logo"/></a>
+            <a th:href="@{/}" id="page_name">JAPAN ESTATE</a>
+        </div>
+    </div>
+    <nav class="center_header">
+    </nav>
+    <div class="right_header">
+        <a th:href="@{/logout}" class="logout_button"><span class="line-md--logout"></span>Logout</a>
+    </div>
+</div>
+<div class="profile_page_layout">
+    <div class="your_account_section">
+        <p class="section_title">Your account</p>
+        <hr>
+        <a th:href="@{/user/profile}" class="section_option">
+            <span class="mdi--user-outline"></span>
+            <p>Profile</p>
+        </a>
+        <a th:href="@{/user/basket}" class="section_option" style="background-color: #aaeeaa">
+            <span class="icon-park-outline--shopping"></span>
+            <p>Basket</p>
+        </a>
+        <a th:href="@{/user/orders}" class="section_option">
+            <span class="material-symbols--orders-outline-rounded"></span>
+            <p>Orders</p>
+        </a>
+        <a th:href="@{/user/edit_profile}" class="section_option">
+            <span class="mdi--account-edit-outline"></span>
+            <p>Edit profile</p>
+        </a>
+    </div>
+    <div class="profile_info_section">
+        <div class="section_title_box">
+            <p class="section_title">Your basket</p>
+            <hr>
+        </div>
+        <div class="info_box">
 
+        </div>
+    </div>
+</div>
 </body>
 </html>

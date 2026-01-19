@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/css/layout.css">
     <link rel="stylesheet" href="/css/profile.css">
     <link rel="icon" type="image/png" sizes="32x32" href="/images/layout/favicon.png">
-    <title>Profile</title>
+    <title>Profile - Orders</title>
 </head>
 <body>
 <!-- Header -->
@@ -32,7 +32,7 @@
     <div class="your_account_section">
         <p class="section_title">Your account</p>
         <hr>
-        <a th:href="@{/user/profile}" class="section_option" style="background-color: #aaeeaa">
+        <a th:href="@{/user/profile}" class="section_option">
             <span class="mdi--user-outline"></span>
             <p>Profile</p>
         </a>
@@ -40,7 +40,7 @@
             <span class="icon-park-outline--shopping"></span>
             <p>Basket</p>
         </a>
-        <a th:href="@{/user/orders}" class="section_option">
+        <a th:href="@{/user/orders}" class="section_option"  style="background-color: #aaeeaa">
             <span class="material-symbols--orders-outline-rounded"></span>
             <p>Orders</p>
         </a>
@@ -51,26 +51,11 @@
     </div>
     <div class="profile_info_section">
         <div class="section_title_box">
-            <p class="section_title">Your profile</p>
+            <p class="section_title">Your orders</p>
             <hr>
         </div>
         <div class="info_box">
-            <p class="title_info_wrapper">
-                <span class="title_of_info">Full name:</span>
-                <span th:text="${fullName}|"></span>
-            </p>
-            <div class="title_info_wrapper">
-                <span class="title_of_info">Genre: </span>
-                <span th:text="${user.gender}"></span>
-            </div>
-            <div class="title_info_wrapper">
-                <span class="title_of_info">E-Mail: </span>
-                <span th:text="${user.email}"></span>
-            </div>
-            <div class="title_info_wrapper">
-                <span class="title_of_info">Birth date: </span>
-                <span th:text="${#temporals.format(user.bDay, 'dd/MM/yyyy')}"></span>
-            </div>
+
         </div>
     </div>
 </div>

@@ -4,6 +4,7 @@ import com.example.Japan_estate.model.User;
 import com.example.Japan_estate.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -57,11 +58,60 @@ public class UserController {
         return "redirect:/";
     }
 
+    @GetMapping("/logout")
+    public String logout(HttpSession session){
+        session.invalidate();
+        return ("/login");
+    }
+
     @GetMapping("/user/profile")
-    public String showProfile(HttpSession session){
+    public String showProfile(HttpSession session, Model model){
+        if(session.getAttribute("loggedUser") == null){
+            return "/login";
+        }
+        User user = (User) session.getAttribute("loggedUser");
+        model.addAttribute("fullName", user.getName() + " " + user.getSurname());
+        model.addAttribute("user", user);
+        return "/user/profile";
+    }
+
+    @GetMapping("/user/basket")
+    public String showBasket(HttpSession session, Model model){
 //        if(session.getAttribute("loggedUser") == null){
 //            return "/login";
 //        }
+        return "/user/basket";
+    }
+
+    @GetMapping("/user/orders")
+    public String showOrders(HttpSession session, Model model){
+//        if(session.getAttribute("loggedUser") == null){
+//            return "/login";
+//        }
+        return "/user/orders";
+    }
+
+    @GetMapping("/user/edit_profile")
+    public String showEditProfile(HttpSession session, Model model){
+        if(session.getAttribute("loggedUser") == null){
+            return "/login";
+        }
+        User user = (User) session.getAttribute("loggedUser");
+        model.addAttribute("user", user);
+
+        Integer bDayDay = user.getbDay().getDayOfMonth();
+        Integer bDayMonth = user.getbDay().getMonthValue();
+        Integer bDayYear = user.getbDay().getYear();
+        model.addAttribute("bDayDay", bDayDay);
+        model.addAttribute("bDayMonth", bDayMonth);
+        model.addAttribute("bDayYear", bDayYear);
+
+        return "/user/editProfile";
+    }
+
+    @PostMapping("/user/edit_profile")
+    public String editProfile(){
+
         return "/user/profile";
     }
 }
