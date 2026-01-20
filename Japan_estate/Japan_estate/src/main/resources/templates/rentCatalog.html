@@ -39,7 +39,7 @@
 <div class="filters_catalog_adjustment">
     <!-- filters bar -->
     <div class="flex_container_filters_bar">
-        <form id="filtersForm" action="/" th:object="${filters}" method="get">
+        <form id="filtersForm" action="/rent_catalog" th:object="${filters}" method="get">
             <div class="filters_bar_box">
                 <p style="font-weight: 500; font-size: 20px;">Filters</p>
                 <hr>
@@ -90,7 +90,7 @@
         <div class="flex_item" th:each="house : ${houses}">
             <a th:href="'/house_details/' + ${house.id}"> <img th:src="@{'/images/houses/' + ${house.img}}" class="catalog_img"/> </a>
             <p th:text="${house.city}"></p>
-            <p th:text="${#numbers.formatDecimal(house.buyPrice, 0, 'POINT', 2, 'COMMA')} + '¥'"></p>
+            <p th:text="${#numbers.formatDecimal(house.rentPrice, 0, 'POINT', 2, 'COMMA')} + '¥'"></p>
         </div>
     </div>
 </div>

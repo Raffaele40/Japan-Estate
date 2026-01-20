@@ -11,7 +11,8 @@ public class House {
 
     private String address;
     private String city;
-    private Double price;
+    private Double buyPrice;
+    private Double rentPrice;
     private int size;
     private int rooms;
     private String img;
@@ -41,12 +42,20 @@ public class House {
         this.city = city;
     }
 
-    public Double getPrice() {
-        return price;
+    public Double getBuyPrice() {
+        return buyPrice;
     }
 
-    public void setPrice(Double price) {
-        this.price = price;
+    public void setBuyPrice(Double buyPrice) {
+        this.buyPrice = buyPrice;
+    }
+
+    public Double getRentPrice() {
+        return rentPrice;
+    }
+
+    public void setRentPrice(Double rentPrice) {
+        this.rentPrice = rentPrice;
     }
 
     public int getSize() {
@@ -81,16 +90,16 @@ public class House {
         this.available = available;
     }
 
-    @Override
-    public String toString() {
-        return "House{" +
-                "id=" + id +
-                ", address='" + address + '\'' +
-                ", city= " + city +
-                ", price=" + price +
-                ", size=" + size +
-                ", rooms=" + rooms +
-                ", available=" + available +
-                '}';
+    public House(){}
+
+    public House(String address, String city, Double buyPrice, Double rentPrice, int size, int rooms, String img, boolean available) {
+        this.address = address;
+        this.city = city;
+        this.buyPrice = buyPrice;
+        this.rentPrice = rentPrice;
+        this.size = size;
+        this.rooms = rooms;
+        this.img = img;
+        this.available = available;
     }
 }

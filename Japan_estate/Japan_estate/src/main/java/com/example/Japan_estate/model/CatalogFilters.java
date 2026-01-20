@@ -81,11 +81,23 @@ public class CatalogFilters {
         return (cities == null || cities.isEmpty()) && (minPrice == null || minPrice == 0) && (maxPrice == null || maxPrice == 0) && (minRooms == null || minRooms <= 0) && (maxRooms == null || maxRooms <= 0) && (minSize == null || minSize <= 0) && (maxSize == null || maxSize <= 0) && available;
     }
 
-    public boolean matches(House h){
+    public boolean matchesBuy(House h){
         if (available && !h.isAvailable()){ return false; }
         if (cities != null && !cities.isEmpty() && !cities.contains(h.getCity())){ return false; }
-        if (minPrice != null && h.getPrice() < minPrice){ return false; }
-        if (maxPrice != null && h.getPrice() > maxPrice){ return false; }
+        if (minPrice != null && h.getBuyPrice() < minPrice){ return false; }
+        if (maxPrice != null && h.getBuyPrice() > maxPrice){ return false; }
+        if (minRooms != null && h.getRooms() < minRooms){ return false; }
+        if (maxRooms != null && h.getRooms() > maxRooms){ return false; }
+        if (minSize != null && h.getSize() < minSize){ return false; }
+        if (maxSize != null && h.getSize() > maxSize){ return false; }
+        return true;
+    }
+
+    public boolean matchesRent(House h){
+        if (available && !h.isAvailable()){ return false; }
+        if (cities != null && !cities.isEmpty() && !cities.contains(h.getCity())){ return false; }
+        if (minPrice != null && h.getRentPrice() < minPrice){ return false; }
+        if (maxPrice != null && h.getRentPrice() > maxPrice){ return false; }
         if (minRooms != null && h.getRooms() < minRooms){ return false; }
         if (maxRooms != null && h.getRooms() > maxRooms){ return false; }
         if (minSize != null && h.getSize() < minSize){ return false; }

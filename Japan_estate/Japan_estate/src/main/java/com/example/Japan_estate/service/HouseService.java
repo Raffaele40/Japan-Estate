@@ -46,9 +46,15 @@ public class HouseService {
         repo.delete(house);
     }
 
-    public List<House> getFilteredHouses(CatalogFilters filters){
+    public List<House> getFilteredHousesBuy(CatalogFilters filters){
         return repo.findAll().stream()
-                .filter(filters::matches)
+                .filter(filters::matchesBuy)
+                .toList();
+    }
+
+    public List<House> getFilteredHousesRent(CatalogFilters filters){
+        return repo.findAll().stream()
+                .filter(filters::matchesRent)
                 .toList();
     }
 }

@@ -25,7 +25,7 @@ public class HouseController {
         User user = (User) session.getAttribute("loggedUser");
         model.addAttribute("user", user);
 
-        List<House> houses = service.getFilteredHouses(filters);
+        List<House> houses = service.getFilteredHousesBuy(filters);
 
         model.addAttribute("houses", houses);
 
@@ -36,6 +36,24 @@ public class HouseController {
         model.addAttribute("allCities", allCities);
         model.addAttribute("filters", filters);
         return "index";
+    }
+
+    @GetMapping("/rent_catalog")
+    public String rentCatalog(@ModelAttribute CatalogFilters filters, HttpSession session, Model model){
+        User user = (User) session.getAttribute("loggedUser");
+        model.addAttribute("user", user);
+
+        List<House> houses = service.getFilteredHousesRent(filters);
+
+        model.addAttribute("houses", houses);
+
+        List<String> allCities = cityLoader.getCityList().stream()
+                .map(CityEntry::getCity)
+                .sorted()
+                .toList();
+        model.addAttribute("allCities", allCities);
+        model.addAttribute("filters", filters);
+        return "rentCatalog";
     }
 
     @GetMapping("/house_details/{id}")
