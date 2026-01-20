@@ -1,5 +1,6 @@
 package com.example.Japan_estate.controller;
 
+import com.example.Japan_estate.model.EditProfileDTO;
 import com.example.Japan_estate.model.User;
 import com.example.Japan_estate.service.UserService;
 import jakarta.servlet.http.HttpSession;
@@ -37,9 +38,9 @@ public class UserController {
         User saved = service.register(user);
         if (saved == null){
             model.addAttribute("error", "Email already registered");
-            return "user/register";
+            return "register";
         }
-        return "redirect:/login";
+        return "redirect:login";
     }
 
     @GetMapping("/login")
@@ -61,18 +62,18 @@ public class UserController {
     @GetMapping("/logout")
     public String logout(HttpSession session){
         session.invalidate();
-        return ("/login");
+        return "login";
     }
 
     @GetMapping("/user/profile")
     public String showProfile(HttpSession session, Model model){
         if(session.getAttribute("loggedUser") == null){
-            return "/login";
+            return "login";
         }
         User user = (User) session.getAttribute("loggedUser");
         model.addAttribute("fullName", user.getName() + " " + user.getSurname());
         model.addAttribute("user", user);
-        return "/user/profile";
+        return "user/profile";
     }
 
     @GetMapping("/user/basket")
@@ -80,7 +81,7 @@ public class UserController {
 //        if(session.getAttribute("loggedUser") == null){
 //            return "/login";
 //        }
-        return "/user/basket";
+        return "user/basket";
     }
 
     @GetMapping("/user/orders")
@@ -88,30 +89,51 @@ public class UserController {
 //        if(session.getAttribute("loggedUser") == null){
 //            return "/login";
 //        }
-        return "/user/orders";
+        return "user/orders";
     }
 
     @GetMapping("/user/edit_profile")
     public String showEditProfile(HttpSession session, Model model){
         if(session.getAttribute("loggedUser") == null){
-            return "/login";
+            return "login";
         }
         User user = (User) session.getAttribute("loggedUser");
-        model.addAttribute("user", user);
 
-        Integer bDayDay = user.getbDay().getDayOfMonth();
-        Integer bDayMonth = user.getbDay().getMonthValue();
-        Integer bDayYear = user.getbDay().getYear();
-        model.addAttribute("bDayDay", bDayDay);
-        model.addAttribute("bDayMonth", bDayMonth);
-        model.addAttribute("bDayYear", bDayYear);
+        EditProfileDTO dto = new EditProfileDTO(user.getName(), user.getSurname(), user.getGender());
+        model.addAttribute("editUser", dto);
 
-        return "/user/editProfile";
+        dto.setbDayDay(user.getbDay().getDayOfMonth());
+        dto.setbDayMonth(user.getbDay().getMonthValue());
+        dto.setbDayYear(user.getbDay().getYear());
+        model.addAttribute("bDayDay", dto.getbDayDay());
+        model.addAttribute("bDayMonth", dto.getbDayMonth());
+        model.addAttribute("bDayYear", dto.getbDayYear());
+
+        return "user/editProfile";
     }
 
     @PostMapping("/user/edit_profile")
-    public String editProfile(){
+    public String editProfile(@ModelAttribute("editUser") EditProfileDTO dto, HttpSession session, Model model){
+        if(session.getAttribute("loggedUser") == null){
+            return "login";
+        }
+        User user = (User) session.getAttribute("loggedUser");
+        LocalDate bDay = LocalDate.of(dto.getbDayYear(), dto.getbDayMonth(), dto.getbDayDay());
 
-        return "/user/profile";
+        user.setName(dto.getName());
+        user.setSurname(dto.getSurname());
+        user.setGender(dto.getGender());
+        user.setbDay(bDay);
+
+        if(dto.getNewPassword() != null && !dto.getNewPassword().isBlank()){
+            if(!service.passwordsMatches(dto.getOldPassword(),user.getPassword())){
+                model.addAttribute("error", "Incorrect password");
+                return "user/editProfile";
+            }
+            service.setEncodedPassword(dto.getNewPassword(), user);
+        }
+        service.updateUser(user);
+        session.setAttribute("loggedUser", user);
+        return "redirect:profile";
     }
 }

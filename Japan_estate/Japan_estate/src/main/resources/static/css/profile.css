@@ -162,6 +162,15 @@
     transition: .1s all;
 }
 
+.label{
+    margin-left: 3px;
+}
+
+.error_message{
+    color: #ff8080;
+    align-self: center;
+}
+
 .mdi--account-edit-outline {
   display: inline-block;
   width: 26px;

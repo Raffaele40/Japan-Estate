@@ -36,11 +36,26 @@ public class UserService {
         return null;
     }
 
+    public void updateUser(User newUser){
+        userRepo.save(newUser);
+    }
+
     public boolean checkParams(User user){
         if(user.getName() == null || user.getName().isBlank() || user.getSurname() == null || user.getSurname().isBlank() || user.getEmail() == null || user.getEmail().isBlank() || user.getPassword() == null || user.getPassword().isBlank() || user.getGender() == null || user.getGender().isBlank() || user.getbDay() == null){
             return false;
         }
         return true;
+    }
+
+    public boolean passwordsMatches(String rawPassword, String encodedPassword){
+        if(!passwordEncoder.matches(rawPassword, encodedPassword)){
+            return false;
+        }
+        return true;
+    }
+
+    public void setEncodedPassword(String rawPassword, User user){
+        user.setPassword(passwordEncoder.encode(rawPassword));
     }
 
     public List<User> getAll(){

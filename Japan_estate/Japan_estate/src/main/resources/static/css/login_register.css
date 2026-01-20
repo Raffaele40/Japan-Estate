@@ -139,5 +139,5 @@ select.register_login_input{
 }
 
 .error_message{
-    color: red;
+    color: #ff8080;
 }
