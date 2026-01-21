@@ -18,7 +18,7 @@
 <div class="flex_header">
     <div class="left_header">
         <div class="box_logo_name">
-            <a th:href="@{/}"> <img th:src="@{'/images/layout/logo_rettangolo.png'}" id="logo"/></a>
+            <a th:href="@{/}"> <img th:src="@{'/images/layout/rectangle_logo.png'}" id="logo"/></a>
             <a th:href="@{/}" id="page_name">JAPAN ESTATE</a>
         </div>
     </div>
@@ -39,7 +39,8 @@
 <div class="flex_infobox">
     <img th:src="@{'/images/houses/' + ${houseDetails.img}}" class="house_img"/>
     <p th:text="${houseDetails.city}"></p>
-    <p th:text="${#numbers.formatDecimal(houseDetails.price, 0, 'COMMA', 3, 'POINT')} + '¥'"></p>
+    <p th:if="${houseDetails.buyPrice != null and housePrice == houseDetails.buyPrice}" th:text="'¥' + ${#numbers.formatDecimal(housePrice, 0, 'COMMA', 2, 'POINT')}"></p>
+    <p th:if="${houseDetails.rentPrice != null and housePrice == houseDetails.rentPrice}" th:text="'¥' + ${#numbers.formatDecimal(housePrice, 0, 'COMMA', 2, 'POINT')} + '/Month'"></p>
     <p th:text="${'rooms: ' + houseDetails.rooms}"></p>
     <p th:text="${'size: ' + houseDetails.size + 'm^2'}"></p>
 </div>

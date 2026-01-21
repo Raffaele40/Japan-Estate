@@ -84,6 +84,7 @@ public class CatalogFilters {
     public boolean matchesBuy(House h){
         if (available && !h.isAvailable()){ return false; }
         if (cities != null && !cities.isEmpty() && !cities.contains(h.getCity())){ return false; }
+        if (h.getBuyPrice() == null){ return false; }
         if (minPrice != null && h.getBuyPrice() < minPrice){ return false; }
         if (maxPrice != null && h.getBuyPrice() > maxPrice){ return false; }
         if (minRooms != null && h.getRooms() < minRooms){ return false; }
@@ -96,6 +97,7 @@ public class CatalogFilters {
     public boolean matchesRent(House h){
         if (available && !h.isAvailable()){ return false; }
         if (cities != null && !cities.isEmpty() && !cities.contains(h.getCity())){ return false; }
+        if (h.getRentPrice() == null){ return false; }
         if (minPrice != null && h.getRentPrice() < minPrice){ return false; }
         if (maxPrice != null && h.getRentPrice() > maxPrice){ return false; }
         if (minRooms != null && h.getRooms() < minRooms){ return false; }

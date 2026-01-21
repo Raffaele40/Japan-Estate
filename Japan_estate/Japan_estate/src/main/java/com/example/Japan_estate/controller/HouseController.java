@@ -56,14 +56,27 @@ public class HouseController {
         return "rentCatalog";
     }
 
-    @GetMapping("/house_details/{id}")
-    public String houseDetails(@PathVariable Integer id, HttpSession session, Model model){
+    @GetMapping("/buy_house_details/{id}")
+    public String buyHouseDetails(@PathVariable Integer id, HttpSession session, Model model){
         User user = (User) session.getAttribute("loggedUser");
         model.addAttribute("user", user);
 
         House house = service.findById(id)
                         .orElseThrow(() -> new RuntimeException("House not found"));
         model.addAttribute("houseDetails", house);
+        model.addAttribute("housePrice", house.getBuyPrice());
+        return "houseDetails";
+    }
+
+    @GetMapping("/rent_house_details/{id}")
+    public String rentHouseDetails(@PathVariable Integer id, HttpSession session, Model model){
+        User user = (User) session.getAttribute("loggedUser");
+        model.addAttribute("user", user);
+
+        House house = service.findById(id)
+                .orElseThrow(() -> new RuntimeException("House not found"));
+        model.addAttribute("houseDetails", house);
+        model.addAttribute("housePrice", house.getRentPrice());
         return "houseDetails";
     }
 

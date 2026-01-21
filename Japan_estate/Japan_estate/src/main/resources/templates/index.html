@@ -18,7 +18,7 @@
 <div class="flex_header">
     <div class="left_header">
         <div class="box_logo_name">
-            <a th:href="@{/}"> <img th:src="@{'/images/layout/logo_rettangolo.png'}" id="logo"/></a>
+            <a th:href="@{/}"> <img th:src="@{'/images/layout/rectangle_logo.png'}" id="logo"/></a>
             <a th:href="@{/}" id="page_name">JAPAN ESTATE</a>
         </div>
     </div>
@@ -88,9 +88,9 @@
     <!-- Catalog -->
     <div class="flex_catalog">
         <div class="flex_item" th:each="house : ${houses}">
-            <a th:href="'/house_details/' + ${house.id}"> <img th:src="@{'/images/houses/' + ${house.img}}" class="catalog_img"/> </a>
+            <a th:href="'/buy_house_details/' + ${house.id}"> <img th:src="@{'/images/houses/' + ${house.img}}" class="catalog_img"/> </a>
             <p th:text="${house.city}"></p>
-            <p th:text="${#numbers.formatDecimal(house.buyPrice, 0, 'POINT', 2, 'COMMA')} + '¥'"></p>
+            <p th:text="'¥' + ${#numbers.formatDecimal(house.buyPrice, 0, 'POINT', 2, 'COMMA')}"></p>
         </div>
     </div>
 </div>
